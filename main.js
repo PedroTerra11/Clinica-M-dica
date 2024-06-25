@@ -13,7 +13,7 @@ let consultas = []
 let indice
 let atributo
 let opcao
-let médicos = [Douglas, Tilia, Alison, Marcos, Roberta]
+let medicos = ["Douglas", "Tilia", "Alison", "Marcos", "Roberta"]
 
 mensagem()
 process.stdin.on("data", function(data){
@@ -21,7 +21,7 @@ process.stdin.on("data", function(data){
     if(!opcao){
         opcao = Number(entrada_usuario)
     if(opcao == 1){
-        console.log("Digite o seu nome:")
+        console.log("Digite o seu nome completo:")
     }else if (opcao == 2){
         console.log("Pressione enter para continuar")
     }else if(opcao == 3){
@@ -49,15 +49,24 @@ process.stdin.on("data", function(data){
     switch (opcao) {
         case 1:
             if(!consulta.nome){
-                consulta.nome = entrada_usuario
-                console.log("Digite o nome do médico que deseja:")
+                if(entrada_usuario.length > 3){
+                    consulta.nome = entrada_usuario
+                    console.log("Digite o médico que deseja! Em nossa clínica estão em plantão os médicos: ", medicos)
+                }else
+                    console.log("Digite um nome válido")
             }else if(!consulta.medico){
-                consulta.medico = entrada_usuario
-                console.log("Digite o dia que deseja realizar a sua consulta!")
+                for(let i = 0; i < medicos.length; i++){
+                    if(entrada_usuario == medicos[i]){
+                        consulta.medico = entrada_usuario
+                        console.log("Digite o dia que deseja realizar a sua consulta!")
+                    }else
+                        console.log("Digite um médico que esteja de plantão no momento!")
+                        break;
+                }
             }else if(!consulta.dia){
                 if(entrada_usuario >= 1 && entrada_usuario <= 31){
                     consulta.dia = entrada_usuario
-                    console.log("Digite o horario desejado! (Lembrando que nosso horario de expediente é das 08:00 até as 18h!")
+                    console.log("Digite o horario desejado! (Lembrando que nosso horario de expediente é das 8:00 até as 18h!")
                 }else
                     console.log("Digite um dia válido")
             }else if(!consulta.horario){
