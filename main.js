@@ -18,6 +18,7 @@ let medicos = ["Douglas", "Tilia", "Alison", "Marcos", "Roberta"]
 mensagem()
 process.stdin.on("data", function(data){
     let entrada_usuario = data.toString().trim()
+
     if(!opcao){
         opcao = Number(entrada_usuario)
     if(opcao == 1){
@@ -89,35 +90,36 @@ process.stdin.on("data", function(data){
                 mensagem()
             break;
         
-        case 3:
-            if(!indice){
-                indice = entrada_usuario
-                console.log(consultas[indice])
-                console.log("Existem todos esses atributos qual você deseja remover?")
-            }else if(!atributo){
-                atributo = entrada_usuario
-                console.log("Qual é o valor?")
-            }else{
-                consultas[indice][atributo] = entrada_usuario
-                console.log(atributo, "foi alterado para: ", entrada_usuario + "!\n")
-                mensagem()
-            }
- 
-    break;
+            case 3:
+                if (!indice) {
+                    indice = Number(entrada_usuario);
+                    console.log("Consulta selecionada:");
+                    console.log(consultas[indice]);
+                    console.log("Qual atributo você deseja alterar?");
+                } else if (!atributo) {
+                    atributo = entrada_usuario;
+                    console.log("Qual é o novo valor para " + atributo + "?");
+                } else {
+                    consultas[indice][atributo] = entrada_usuario;
+                    console.log(atributo + " alterado para: " + entrada_usuario + "!\n");
+                    indice = 0;
+                    atributo = 0;
+                    mensagem();
+                }
+                break;
 
-        case 4: 
-            if(!indice){
-                indice = entrada_usuario
-                consultas.splice(consultas[indice])
-                console.log("Usuário removido com sucesso \n")
-                mensagem()
-            }
-            
-                
-            break;
+            case 4:
+                if (!indice) {
+                    indice = Number(entrada_usuario);
+                    consultas.splice(indice, 1);
+                    console.log("Consulta removida com sucesso.\n");
+                    indice = 0;
+                    mensagem();
+                }
+                break;
 
+            default:
 
-        default:
             break;
     }
 
