@@ -2,10 +2,10 @@ function mensagem() {
   opcao = 0;
   indice = 0;
   atributo = 0;
-  console.log("Digite 1 para adicionar uma consulta!");
-  console.log("Digite 2 para listar todas as consultas!");
-  console.log("Digite 3 para atualizar uma consulta existente! ");
-  console.log("Digite 4 para cancelar uma consulta!");
+  console.log(`Digite 1 para adicionar uma consulta!
+  Digite 2 para listar todas as consultas!
+  Digite 3 para atualizar uma consulta existente!
+  Digite 4 para cancelar uma consulta!`)
 }
 
 let consulta = {};
