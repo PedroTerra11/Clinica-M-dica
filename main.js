@@ -2,10 +2,10 @@ function mensagem() {
   opcao = 0;
   indice = 0;
   atributo = 0;
-  console.log("Digite 1 para adicionar uma consulta");
-  console.log("Digite 2 para listar todas as consultas");
-  console.log("Digite 3 para atualizar uma consulta existente. ");
-  console.log("Digite 4 para cancelar uma consulta.");
+  console.log("Digite 1 para adicionar uma consulta!");
+  console.log("Digite 2 para listar todas as consultas!");
+  console.log("Digite 3 para atualizar uma consulta existente! ");
+  console.log("Digite 4 para cancelar uma consulta!");
 }
 
 let consulta = {};
@@ -14,6 +14,7 @@ let indice;
 let atributo;
 let opcao;
 let medicos = ["Douglas", "Tilia", "Alison", "Marcos", "Roberta"];
+let verificar;
 
 mensagem();
 process.stdin.on("data", function (data) {
@@ -60,9 +61,11 @@ process.stdin.on("data", function (data) {
             if (medicos[i] == entrada_usuario) {
               consulta.medico = entrada_usuario;
               console.log("Digite o dia que deseja realizar a sua consulta!");
-            } else
+              verificar = true
+              break;
+            } if(verificar == false){
               console.log("Digite um médico que esteja de plantão no momento!");
-            break;
+            }
           }
         } else if (!consulta.dia) {
           if (entrada_usuario >= 1 && entrada_usuario <= 31) {
